@@ -15,15 +15,28 @@ describe 'mongo::default' do
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
     end
-  end
-
-  context 'When all attributes are default, on CentOS 7' do
-    # for a complete list of available platforms and versions see:
-    # https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md
-    platform 'centos', '7'
-
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
+    it 'Should update all sources' do
+      expect(chef_run).to update_apt_update('update')
     end
+    it 'Should add mongo to the source list' do
+      expect(chef_run).to add_apt_repository('mongodb-org')
+    end
+    it 'Should install mongo' do
+      expect(chef_run).to upgrade_package('mongodb-org')
+    end
+    it 'should create a mongod.conf template in /etc/mongod.conf' do
+      expect(chef_run).to create_template("/etc/mongod.conf")
+    end
+    it 'should create a mongod.service template in /lib/systemd/system/mongod.service' do
+      expect(chef_run).to create_template("/lib/systemd/system/mongod.service")
+    end
+    it 'should enable mongodb' do
+      expect(chef_run).to enable_service("mongod")
+    end
+    it 'should start mongodb' do
+      expect(chef_run).to start_service("mongod")
+    end
+
+    at_exit { ChefSpec::Coverage.report! }
   end
 end

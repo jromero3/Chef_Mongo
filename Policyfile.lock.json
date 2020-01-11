@@ -1,0 +1,51 @@
+{
+  "revision_id": "2f742d5a5c7a01990e0b83ecc8d7f0452df0e70ef174a757072add1824efb00d",
+  "name": "mongo",
+  "run_list": [
+    "recipe[mongo::default]"
+  ],
+  "included_policy_locks": [
+
+  ],
+  "cookbook_locks": {
+    "mongo": {
+      "version": "0.1.0",
+      "identifier": "0fc2a4869c6be4fbf91fcf3b6d9bdd70c70b5e65",
+      "dotted_decimal_identifier": "4436136539483108.70924134170455451.243476445486693",
+      "source": ".",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": null,
+        "revision": "77781057fc58bff5b52850ec44916569183c2309",
+        "working_tree_clean": false,
+        "published": false,
+        "synchronized_remote_branches": [
+
+        ]
+      },
+      "source_options": {
+        "path": "."
+      }
+    }
+  },
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "solution_dependencies": {
+    "Policyfile": [
+      [
+        "mongo",
+        ">= 0.0.0"
+      ]
+    ],
+    "dependencies": {
+      "mongo (0.1.0)": [
+
+      ]
+    }
+  }
+}
